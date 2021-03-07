@@ -1,4 +1,3 @@
-### Credits
+### Go-Ecommerce
 
-- Template structure based on the Gostack bootcamp provided by [Rocketseat](https://github.com/Rocketseat)
-- Auth module based on [ThomasOliver545](https://github.com/ThomasOliver545/Blog-with-NestJS-and-Angular) repository
+  - The goal of this project is to learn realtionships (many to many) using typeorm
