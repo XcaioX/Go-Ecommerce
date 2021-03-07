@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { MongooseModule } from '@nestjs/mongoose'
 
 import { authConfig } from './config/auth.config'
 import { nosqlDatabase, sqlDatabase } from './config/database.config'
 import { storageConfig } from './config/storage.config'
-import { UsersModule } from './modules/users/users.module'
+import { UsersModule } from './modules/customers/users.module'
 import { AuthModule } from './shared/modules/auth/auth.module'
-import { NotificationsModule } from './modules/notifications/notifications.module'
 import { MailModule } from './shared/modules/mail/mail.module'
 import { StorageModule } from './shared/modules/storage/storage.module'
+import { ProductModule } from './modules/products/product.module'
+import { OrderModule } from './modules/orders/order.module'
 
 @Module({
   imports: [
@@ -38,26 +38,12 @@ import { StorageModule } from './shared/modules/storage/storage.module'
         keepConnectionAlive: true
       })
     }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get('nosqlDatabase.url'),
-        connectionName: configService.get('nosqlDatabase.name'),
-        dbName: configService.get('nosqlDatabase.database'),
-        useUnifiedTopology: false,
-        autoCreate: true,
-        autoIndex: true,
-        autoReconnect: true,
-        keepAlive: true
-      })
-    }),
     AuthModule,
     UsersModule,
-    NotificationsModule,
     StorageModule,
-    MailModule
+    MailModule,
+    ProductModule,
+    OrderModule
   ]
 })
 export class AppModule {}
