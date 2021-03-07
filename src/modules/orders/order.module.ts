@@ -6,9 +6,14 @@ import { OrderRepository } from './order.repository'
 import { OrderService } from './order.service'
 import { OrderProductsRepository } from './order_product.repository'
 
+import { UsersModule } from 'modules/customers/users.module'
+import { ProductModule } from 'modules/products/product.module'
+
 @Module({
   imports: [
-    TypeOrmModule.forFeature([OrderRepository, OrderProductsRepository])
+    TypeOrmModule.forFeature([OrderRepository, OrderProductsRepository]),
+    UsersModule,
+    ProductModule
   ],
   controllers: [OrderController],
   providers: [OrderService],

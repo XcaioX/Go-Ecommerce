@@ -22,7 +22,7 @@ export class Product extends BaseEntity {
   price: number
 
   @Column({ type: 'int' })
-  quantity: string
+  quantity: number
 
   @OneToMany(() => OrderProducts, order_products => order_products.product, {
     cascade: true,

@@ -34,8 +34,10 @@ export class UsersService {
     private readonly storageProvider: StorageService
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.usersRepository.find()
+  async findAll(user_id?: string[]): Promise<User[]> {
+    return user_id
+      ? await this.usersRepository.findByIds(user_id)
+      : await this.usersRepository.find()
   }
 
   async findOne(id: string): Promise<User> {
